@@ -52,10 +52,18 @@
         };
         $scope.AdicionarContato = function(contato) {
           contato.data = new Date();
-          $http.post('http://localhost:3000/contatos', contato).then(function(data) {
-            delete $scope.contato;
-            $scope.contatoForm.$setPristine();
-          });
+
+          $http
+            .post('http://localhost:3000/contatos2', contato)
+            .then(function(data) {
+              console.log(data);
+              delete $scope.contato;
+              $scope.contatoForm.$setPristine();
+              carregarContatos();
+            })
+            .error(function(data, status) {
+              $scope.message = 'Aconteceu um problema:' + data;
+            });
         };
         $scope.apagarContatos = function(contatos) {
           $scope.contatos = contatos.filter(function(contato) {
@@ -97,9 +105,10 @@
         <tbody>
           <tr
             ng-class="{'selecionado negrito': contato.selecionado}"
-            ng-repeat="contato in contatos | filter:criterioBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao"
+            ng-repeat="contato in contatos  | filter:criterioBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao"
           >
             <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+            <td>{{ contato.id | uppercase }}</td>
             <td>{{ contato.nome | uppercase }}</td>
             <td>{{ contato.telefone }}</td>
             <td>{{ contato.operadora.nome | lowercase }}</td>
