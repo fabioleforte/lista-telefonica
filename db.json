@@ -61,6 +61,45 @@
       },
       "data": "2019-08-21T17:02:42.017Z",
       "id": 5
+    },
+    {
+      "nome": "Letíca Silva",
+      "telefone": "8899-1233",
+      "operadora": {
+        "id": 3,
+        "nome": "Tim",
+        "codigo": 41,
+        "categoria": "Celular",
+        "preco": 3
+      },
+      "data": "2019-08-21T17:51:34.191Z",
+      "id": 6
+    },
+    {
+      "nome": "Nelza de Souza",
+      "telefone": "6699-1233",
+      "operadora": {
+        "id": 3,
+        "nome": "Tim",
+        "codigo": 41,
+        "categoria": "Celular",
+        "preco": 3
+      },
+      "data": "2019-08-21T17:51:34.191Z",
+      "id": 7
+    },
+    {
+      "nome": "Ana Maria Cinza",
+      "operadora": {
+        "id": 2,
+        "nome": "Vivo",
+        "codigo": 15,
+        "categoria": "Celular",
+        "preco": 1
+      },
+      "telefone": "2569-2999",
+      "data": "2019-08-21T18:00:14.697Z",
+      "id": 8
     }
   ],
   "operadora": [
