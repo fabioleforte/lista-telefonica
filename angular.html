@@ -5,91 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Lista Telefônica</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-    <style>
-      .jumbotron {
-        width: 600px;
-        text-align: center;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      th {
-        text-align: center;
-      }
-      table {
-        margin-top: 20px;
-      }
-      form-control {
-        margin-bottom: 5px;
-      }
-      .selecionado {
-        background-color: #a9a9a9;
-      }
-      .negrito {
-        font-weight: bold;
-      }
-    </style>
-    <script src="angular.js/angular.js"></script>
-    <script src="angular.js/angular-locale.pt-br.js"></script>
-    <script src="angular.js/angular-messages.js"></script>
-    <script>
-      angular.module('listaTelefonica', ['ngMessages']);
-      angular.module('listaTelefonica').controller('listaTelefonicaCtrl', function($scope, $http) {
-        $scope.app = 'Lista Telefônica ';
-        $scope.contatos = [];
-        $scope.operadora = [];
 
-        var carregarContatos = function() {
-          $http.get('http://localhost:3000/contatos').then(function(data) {
-            $scope.contatos = data.data;
-          });
-        };
-        var carregarOperadora = function() {
-          $http.get('http://localhost:3000/operadora').then(function(data) {
-            $scope.operadora = data.data;
-          });
-        };
-        $scope.AdicionarContato = function(contato) {
-          contato.data = new Date();
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
 
-          $http
-            .post('http://localhost:3000/contatos2', contato)
-            .then(function(data) {
-              console.log(data);
-              delete $scope.contato;
-              $scope.contatoForm.$setPristine();
-              carregarContatos();
-            })
-            .error(function(data, status) {
-              $scope.message = 'Aconteceu um problema:' + data;
-            });
-        };
-        $scope.apagarContatos = function(contatos) {
-          $scope.contatos = contatos.filter(function(contato) {
-            if (!contato.selecionado) {
-              return contato;
-            }
-          });
-        };
-        $scope.isContatosSelecionados = function(contatos) {
-          return (isContatoSecionado = contatos.some(function(contato) {
-            return contato.selecionado;
-          }));
-        };
-        $scope.ordenarPor = function(campo) {
-          $scope.criterioDeOrdenacao = campo;
-          $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-        };
-
-        carregarContatos();
-        carregarOperadora();
-      });
-    </script>
+    <script src="lib/angular.js/angular.js"></script>
+    <script src="lib/angular.js/angular-locale.pt-br.js"></script>
+    <script src="lib/angular.js/angular-messages.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/listaTelefonicaCtrl.js"></script>
   </head>
   <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
       <h3>{{ app }}</h3>
+      {{ message }}
+
       <input class="form-control" type="text" ng-model="criterioBusca" placeholder="Pesquisa" />
       <table ng-if="contatos.length > 0" class="table">
         <thead>
@@ -111,9 +41,8 @@
             <td>{{ contato.id | uppercase }}</td>
             <td>{{ contato.nome | uppercase }}</td>
             <td>{{ contato.telefone }}</td>
-            <td>{{ contato.operadora.nome | lowercase }}</td>
+            <td>{{ contato.operadora.nome | uppercase }}</td>
             <td>{{ contato.data | date: 'dd/MM/yyyy HH:mm' }}</td>
-            <td>{{ contato.operadora.preco | currency }}</td>
           </tr>
         </tbody>
       </table>
@@ -168,7 +97,7 @@
           ng-model="contato.operadora"
           class="form-control"
           style="margin-top:5px;"
-          ng-options="operadora.nome group by operadora.categoria for operadora in operadora | orderBy:'nome'"
+          ng-options="operadora.nome + '( ' + ( operadora.preco | currency ) + ')' for operadora in operadora | orderBy:'nome'"
         >
           <option value="">Selecione uma operadora</option>
         </select>
@@ -193,6 +122,6 @@
         Apagar Contatos
       </button>
     </div>
-    <!-- <div ng-include="'footer.html'"></div> -->
+    <div ng-include="view/footer.html"></div>
   </body>
 </html>

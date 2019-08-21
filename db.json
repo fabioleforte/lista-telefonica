@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nome": "Pedro",
-      "telefone": 99998888,
+      "telefone": "9999-8888",
       "data": "2019-08-20T23:28:56.782Z",
       "operadora": {
         "nome": "Oi",
@@ -15,7 +15,7 @@
     {
       "id": 2,
       "nome": "Ana",
-      "telefone": 99998877,
+      "telefone": "9999-8877",
       "data": "2019-08-20T23:28:56.782Z",
       "operadora": {
         "nome": "Vivo",
@@ -27,7 +27,7 @@
     {
       "id": 3,
       "nome": "Maria",
-      "telefone": 99998866,
+      "telefone": "9999-8866",
       "data": "2019-08-20T23:28:56.782Z",
       "operadora": {
         "nome": "Tim",
@@ -37,11 +37,21 @@
       }
     },
     {
+      "nome": "Maria Tereza",
+      "telefone": "2345-7788",
+      "operadora": {
+        "id": 5,
+        "nome": "Embratel",
+        "codigo": 21,
+        "categoria": "Fixo",
+        "preco": 2
+      },
+      "data": "2019-08-21T16:38:14.030Z",
       "id": 4
     },
     {
-      "nome": "Fabio Leforte",
-      "telefone": "1111-1111",
+      "nome": "Amanda Amora",
+      "telefone": "9988-2345",
       "operadora": {
         "id": 3,
         "nome": "Tim",
@@ -49,21 +59,8 @@
         "categoria": "Celular",
         "preco": 3
       },
-      "data": "2019-08-20T22:28:21.157Z",
+      "data": "2019-08-21T17:02:42.017Z",
       "id": 5
-    },
-    {
-      "nome": "Teseteeeeee",
-      "telefone": "1111-1111",
-      "operadora": {
-        "id": 3,
-        "nome": "Tim",
-        "codigo": 41,
-        "categoria": "Celular",
-        "preco": 3
-      },
-      "data": "2019-08-20T22:29:53.577Z",
-      "id": 6
     }
   ],
   "operadora": [
