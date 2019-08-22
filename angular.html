@@ -17,6 +17,8 @@
     <script src="js/services/contatosAPIService.js"></script>
     <script src="js/services/operadorasAPIService.js"></script>
     <script src="js/services/configValue.js"></script>
+    <script src="js/filters/nameFilter.js"></script>
+    <script src="js/filters/ellipsisFilter.js"></script>
   </head>
   <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
@@ -41,8 +43,7 @@
             ng-repeat="contato in contatos  | filter:criterioBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao"
           >
             <td><input type="checkbox" ng-model="contato.selecionado" /></td>
-            <td>{{ contato.id | uppercase }}</td>
-            <td>{{ contato.nome | uppercase }}</td>
+            <td>{{ contato.nome | name | ellipsis: 13 }}</td>
             <td>{{ contato.telefone }}</td>
             <td>{{ contato.operadora.nome | uppercase }}</td>
             <td>{{ contato.data | date: 'dd/MM/yyyy HH:mm' }}</td>
